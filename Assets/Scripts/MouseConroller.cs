@@ -6,8 +6,8 @@ public class MouseConroller : MonoBehaviour, IService
     [SerializeField] private float _scrollRate;
     [SerializeField] private CameraController _cameraController;
     [SerializeField] private PinMover _pinMover;
-    [SerializeField] private PinCreator _pinCreator;
-    [SerializeField] private PinViewer _pinViewer;
+    private PinCreator _pinCreator;
+    private PinViewer _pinViewer;
     private bool _isHolding = false;
     private float _timeHolded = 0f, _timeHoldedToMove = 0.75f;
     private Camera _camera;
@@ -15,8 +15,10 @@ public class MouseConroller : MonoBehaviour, IService
     private Vector2 _startViewportMousePos, _currentViewportMousePos;
     private Vector2 _startWorldMousePos, _currentWorldMousePos;
 
-    private void Awake()
+    private void Start()
     {
+        _pinViewer = ServiceLocator.Current.Get<PinViewer>();
+        _pinCreator = ServiceLocator.Current.Get<PinCreator>();
         _camera = Camera.main;
         _scrollRate = 0.5f;
 

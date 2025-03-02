@@ -3,20 +3,19 @@ using DG.Tweening;
 public class Popup : MonoBehaviour
 {
     [SerializeField] private RectTransform _previewRT, _infoRT;
-    [SerializeField] private CanvasGroup _bodyAplhaGroup, _infoBodyAplhaGroup;
+    [SerializeField] private CanvasGroup _popupBodyAplhaGroup, _infoBodyAplhaGroup;
     private Vector2 _targetPosition, _startPosition;
     private Sequence _animation;
     
     private void Awake()
     {
-        //_infoRT.transform.localScale = Vector3.zero;
-        _infoBodyAplhaGroup.alpha = 0f;
-        _bodyAplhaGroup = GetComponent<CanvasGroup>();
-        _bodyAplhaGroup.alpha = 0f;
+        gameObject.SetActive(false);
+        _popupBodyAplhaGroup = GetComponent<CanvasGroup>();
+        _popupBodyAplhaGroup.alpha = 0f;
         _targetPosition = _previewRT.anchoredPosition;
         _startPosition = new Vector2(_targetPosition.x, -Screen.height / 2f);
         _previewRT.anchoredPosition = _startPosition;
-        gameObject.SetActive(false);
+        _infoBodyAplhaGroup.alpha = 0f;
     }
     public void Show()
     {
@@ -26,11 +25,10 @@ public class Popup : MonoBehaviour
         ServiceLocator.Current.Get<MouseConroller>().blockMouse = true;
         _animation = DOTween.Sequence();
         _animation
-            .Append(_bodyAplhaGroup.DOFade(1f, 0.5f))
+            .Append(_popupBodyAplhaGroup.DOFade(1f, 0.5f))
             .Join(_previewRT.DOAnchorPos(_targetPosition, 0.5f));
 
         _infoRT.gameObject.SetActive(false);
-        //_infoRT.transform.localScale = Vector3.zero;
         _infoBodyAplhaGroup.alpha = 0f;
     }
     public void Hide()
@@ -38,7 +36,7 @@ public class Popup : MonoBehaviour
         KillCurrentAnimationIfActive();
         _animation = DOTween.Sequence();
         _animation
-            .Append(_bodyAplhaGroup.DOFade(0f, 0.5f))
+            .Append(_popupBodyAplhaGroup.DOFade(0f, 0.5f))
             .OnComplete(() => {
                 gameObject.SetActive(false);
                 ServiceLocator.Current.Get<MouseConroller>().blockMouse = false;
@@ -53,10 +51,6 @@ public class Popup : MonoBehaviour
             .OnComplete(() => {
                 _previewRT.gameObject.SetActive(false);
             });
-    }
-    public void HideInfo()
-    {
-
     }
     private void KillCurrentAnimationIfActive()
     {

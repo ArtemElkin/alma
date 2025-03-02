@@ -24,8 +24,8 @@ public class PinViewer : MonoBehaviour, IService
             tmp_name.text = pin.Name;
         else
             tmp_name.text = "Название";
-        if(!string.IsNullOrEmpty(pin._info))
-            tmp_info.text = pin._info;
+        if(!string.IsNullOrEmpty(pin.Info))
+            tmp_info.text = pin.Info;
         else
             tmp_info.text = "Описание";
         popup.Show();
@@ -37,13 +37,11 @@ public class PinViewer : MonoBehaviour, IService
         _currentPin.SetName(name);
 
         saveLoadManager.SaveGame();
-        Debug.Log("Name edited!");
     }
     public void EditPinInfo(string info)
     {
         _currentPin.SetInfo(info);
         saveLoadManager.SaveGame();
-        Debug.Log("Info edited!");
     }
     public void OnDeleteBtnHandler()
     {

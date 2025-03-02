@@ -3,13 +3,13 @@ using UnityEngine;
 
 public sealed class CameraController : MonoBehaviour, IService
 {
-    public event Action CameraSizeChanged;
     [SerializeField] private SpriteRenderer _backgroundSR;
     private float _backgroundWidth, _backgroundHeight;
     private float _leftBorderX, _rightBorderX;
     private float _upperBorderY, _bottomBorderY;
     private float _maxOrthographicSize, _maxCameraWidth, _maxCameraHeight, _newOrthograpgicSize;
     private Camera _camera;
+    public event Action CameraSizeChanged;
     
     private void Awake()
     {

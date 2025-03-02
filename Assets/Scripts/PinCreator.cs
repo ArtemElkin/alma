@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PinCreator : MonoBehaviour, IService
 {
-    public GameObject pinPrefab;
+    [SerializeField] private GameObject pinPrefab;
     private List<Pin> _pins;
     public void SpawnPin(float x, float y, string name = null, string details = null)
     {
@@ -14,7 +14,7 @@ public class PinCreator : MonoBehaviour, IService
         if (name != null)
             pin.Name = name;
         if (details != null)
-            pin._info = details;
+            pin.Info = details;
         AddToList(pin);
     }
     public void AddToList(Pin pin)
@@ -26,9 +26,7 @@ public class PinCreator : MonoBehaviour, IService
     public List<Pin> GetPins() => _pins;
     public void DeletePin(Pin pin)
     {
-        Debug.Log(_pins.Contains(pin));
         _pins.Remove(pin);
         pin.gameObject.SetActive(false);
-        Debug.Log("Deleted successfully");
     }
 }

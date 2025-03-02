@@ -34,7 +34,7 @@ public class PinsSaveLoader : ISaveLoader
         {
             dataset[i] = new PinData{
                 name = pins[i].Name,
-                details = pins[i]._info,
+                details = pins[i].Info,
                 x = pins[i].x,
                 y = pins[i].y
             };

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Pin : MonoBehaviour
 {
-    public string Name {get; set;}
-    public string _info;
+    public string Name { get; set; }
+    public string Info { get; set; }
     public float x, y;
     public Pin(float x, float y)
     {
@@ -15,7 +15,7 @@ public class Pin : MonoBehaviour
         this.x = x;
         this.y = y;
         this.Name = name;
-        this._info = info;
+        this.Info = info;
     }
     public void SetName(string name)
     {
@@ -23,7 +23,7 @@ public class Pin : MonoBehaviour
     }
     public void SetInfo(string info)
     {
-        this._info = info;
+        this.Info = info;
     }
     public void SetPosition(float x, float y)
     {

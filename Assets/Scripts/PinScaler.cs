@@ -6,7 +6,7 @@ public class PinScaler : MonoBehaviour
     private float _scaleRatio;
     private Vector3 _startScale;
 
-    private void Awake()
+    private void Start()
     {
         _cameraController = ServiceLocator.Current.Get<CameraController>();
         _startScale = transform.localScale;

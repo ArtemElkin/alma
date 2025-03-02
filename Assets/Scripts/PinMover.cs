@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PinMover : MonoBehaviour
 {
+    
     public void MovePin(Transform pinTF, Vector2 newPosition)
     {
         pinTF.position = newPosition;
